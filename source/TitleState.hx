@@ -10,6 +10,8 @@ import flixel.graphics.frames.FlxFrame;
 import flixel.group.FlxGroup;
 import flixel.FlxSprite;
 import flixel.util.FlxTimer;
+import flixel.FlxG;
+import flixel.tweens.FlxTween;
 import flixel.input.gamepad.FlxGamepad;
 import haxe.Json;
 
