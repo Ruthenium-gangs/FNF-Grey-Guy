@@ -9,6 +9,7 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.graphics.frames.FlxFrame;
 import flixel.group.FlxGroup;
 import flixel.FlxSprite;
+import flixel.util.FlxTimer;
 import flixel.input.gamepad.FlxGamepad;
 import haxe.Json;
 
