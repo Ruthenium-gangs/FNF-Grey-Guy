@@ -339,23 +339,6 @@ class TitleState extends MusicBeatState
 		}
 		gfDance.antialiasing = ClientPrefs.globalAntialiasing;
 		
-		#if (flixel_addons >= "3.0.0")
-        titlestatebg = new FlxBackdrop(Paths.image('loading'), FlxAxes.XY);
-		titlestatebg.velocity.set(200, 110);
-		titlestatebg.alpha = 0.5;
-		titlestatebg.updateHitbox();
-
-		titlestatebg.screenCenter(X);
-		add(titlestatebg);
-		#else
-		titlestatebg = new FlxBackdrop(Paths.image('loading'), 0.2, 0, true, true);
-		titlestatebg.velocity.set(200, 110);
-		titlestatebg.updateHitbox();
-		titlestatebg.alpha = 0.5;
-		titlestatebg.screenCenter(X);
-		add(titlestatebg);
-		#end
-		titlestatebg.shader = swagShader.shader;
 
 		add(gfDance);
 		gfDance.shader = swagShader.shader;
@@ -404,10 +387,30 @@ class TitleState extends MusicBeatState
 		// titleText.screenCenter(X);
 		add(titleText);
 
-		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
-		logo.screenCenter();
-		logo.antialiasing = ClientPrefs.globalAntialiasing;
-		// add(logo);
+		logoBl = new FlxSprite(-250,-280).loadFrames('title/vloologo');
+		logoBl.animation.addByIndices('bump','i',[3,2,1,0],'',12,false);
+		logoBl.animation.play('bump');
+		logoBl.setScale(2);
+		add(logoBl);
+
+		var vloo = new FlxSprite(0,30).loadImage('title/vloe');
+		vloo.setScale(4);
+		vloo.x = FlxG.width - vloo.width;
+		add(vloo);
+
+
+
+		var static1 = new FlxSprite().loadFrames('title/vloo_static');
+		static1.animation.addByPrefix('i','scallywags instance 1');
+		static1.animation.play('i');
+		static1.blend = ADD;
+		add(static1);
+
+		var fade = new FlxSprite().makeGraphic(FlxG.width,FlxG.height,FlxColor.BLACK);
+		add(fade);
+		FlxTween.tween(fade, {alpha: 0},3, {onComplete: Void -> {
+			fade.destroy();
+		}});
 
 		// FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
 		// FlxTween.tween(logo, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
